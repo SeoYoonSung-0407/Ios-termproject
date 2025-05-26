@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52B76EEA2DE45BDF008B5F38 /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 52B76EE92DE45BDF008B5F38 /* SVProgressHUD */; };
 		52E835A32DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E835A22DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift */; };
 		52E835A52DE44C6300089A0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E835A42DE44C6300089A0F /* ContentView.swift */; };
 		52E835A72DE44C6800089A0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E835A62DE44C6800089A0F /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B76EEA2DE45BDF008B5F38 /* SVProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = "1971366-yoonsung-termproject";
+			packageProductDependencies = (
+				52B76EE92DE45BDF008B5F38 /* SVProgressHUD */,
+			);
 			productName = "1971366-yoonsung-termproject";
 			productReference = 52E8359F2DE44C6300089A0F /* 1971366-yoonsung-termproject.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,10 @@
 				Base,
 			);
 			mainGroup = 52E835962DE44C6200089A0F;
+			packageReferences = (
+				52B76EE72DE45B47008B5F38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				52B76EE82DE45BDF008B5F38 /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
+			);
 			productRefGroup = 52E835A02DE44C6300089A0F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -342,6 +351,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52B76EE72DE45B47008B5F38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.13.0;
+			};
+		};
+		52B76EE82DE45BDF008B5F38 /* XCRemoteSwiftPackageReference "SVProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVProgressHUD/SVProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52B76EE92DE45BDF008B5F38 /* SVProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52B76EE82DE45BDF008B5F38 /* XCRemoteSwiftPackageReference "SVProgressHUD" */;
+			productName = SVProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52E835972DE44C6200089A0F /* Project object */;
 }
