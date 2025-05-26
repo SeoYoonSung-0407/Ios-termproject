@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52B76EEA2DE45BDF008B5F38 /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 52B76EE92DE45BDF008B5F38 /* SVProgressHUD */; };
+		52B76EED2DE4611B008B5F38 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 52B76EEC2DE4611B008B5F38 /* FSCalendar */; };
 		52E835A32DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E835A22DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift */; };
 		52E835A52DE44C6300089A0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E835A42DE44C6300089A0F /* ContentView.swift */; };
 		52E835A72DE44C6800089A0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E835A62DE44C6800089A0F /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B76EEA2DE45BDF008B5F38 /* SVProgressHUD in Frameworks */,
+				52B76EED2DE4611B008B5F38 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +89,7 @@
 			name = "1971366-yoonsung-termproject";
 			packageProductDependencies = (
 				52B76EE92DE45BDF008B5F38 /* SVProgressHUD */,
+				52B76EEC2DE4611B008B5F38 /* FSCalendar */,
 			);
 			productName = "1971366-yoonsung-termproject";
 			productReference = 52E8359F2DE44C6300089A0F /* 1971366-yoonsung-termproject.app */;
@@ -119,6 +122,7 @@
 			packageReferences = (
 				52B76EE72DE45B47008B5F38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				52B76EE82DE45BDF008B5F38 /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
+				52B76EEB2DE4611B008B5F38 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 52E835A02DE44C6300089A0F /* Products */;
 			projectDirPath = "";
@@ -369,6 +373,14 @@
 				minimumVersion = 2.3.1;
 			};
 		};
+		52B76EEB2DE4611B008B5F38 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -376,6 +388,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52B76EE82DE45BDF008B5F38 /* XCRemoteSwiftPackageReference "SVProgressHUD" */;
 			productName = SVProgressHUD;
+		};
+		52B76EEC2DE4611B008B5F38 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52B76EEB2DE4611B008B5F38 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
