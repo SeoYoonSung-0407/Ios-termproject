@@ -18,6 +18,7 @@ struct MainView: UIViewRepresentable {
         calendar.appearance.selectionColor = .systemBlue
         calendar.appearance.todayColor = .systemRed
         calendar.appearance.titleTodayColor = .white
+        
 
         return calendar
     }
@@ -111,7 +112,7 @@ struct MainViewWrapper: View {
     func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "EEEE, M월 d일" // 예: 화요일, 6월 17일
+        formatter.dateFormat = "EEEE, M월 d일"
         return formatter.string(from: date)
     }
 }
