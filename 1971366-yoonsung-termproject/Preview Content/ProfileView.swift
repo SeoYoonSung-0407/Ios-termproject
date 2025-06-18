@@ -10,6 +10,7 @@ import PhotosUI
 
 struct ProfileView: View {
     @EnvironmentObject var userProfile: UserProfileModel
+    @AppStorage("username") private var username: String = ""
     @State private var medications = ["이나야", "아포톡신", "페니실린"]
     @State private var selectedItem: PhotosPickerItem? = nil
 
@@ -42,10 +43,14 @@ struct ProfileView: View {
                     }
                 }
 
-                // 이름
-                Text("사용자 이름")
+                // 이름 입력 필드
+                TextField("이름을 입력하세요", text: $username)
                     .font(.title3)
+                    .padding(10)
+                    .background(Color.white.opacity(0.1))
+                    .cornerRadius(8)
                     .foregroundColor(.white)
+                    .padding(.horizontal)
 
                 // 복용 약 리스트
                 List {
@@ -54,7 +59,7 @@ struct ProfileView: View {
                             Text(med)
                             Spacer()
                             Button("설정") {
-                                // 나중에 ModifyView 호출
+                                // ModifyView 나중에 호출
                             }
                         }
                     }

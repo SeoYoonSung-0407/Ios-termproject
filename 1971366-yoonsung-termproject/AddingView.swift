@@ -9,6 +9,10 @@ import SwiftUI
 
 struct AddingView: View {
     @Binding var show: Bool
+    @Binding var navigateToDetail: Bool
+    @Binding var medName: String
+    @Binding var medCycle: Int
+    @Binding var medTime: Date
     @State private var offsetY: CGFloat = 0
 
     var body: some View {
@@ -22,19 +26,25 @@ struct AddingView: View {
                 .font(.headline)
                 .foregroundColor(.white)
 
-            Button("💊 약 추가할게요") { /* 액션 */ }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
-                .foregroundColor(.white)
+            Button("💊 약 추가할게요") {
+                show = false
+                navigateToDetail = true
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
+            .foregroundColor(.white)
 
-            Button("💊 필요할 때 투여") { /* 액션 */ }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-                .foregroundColor(.white)
+            Button("💊 필요할 때 투여") {
+                show = false
+                // 나중에 다른 로직 추가 가능
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(10)
+            .foregroundColor(.white)
         }
         .padding()
         .background(Color(red: 28/255, green: 70/255, blue: 50/255))
@@ -60,14 +70,17 @@ struct AddingView: View {
         )
         .transition(.move(edge: .bottom))
         .animation(.easeInOut, value: offsetY)
-        // ⬇️ 이게 핵심
         .frame(maxHeight: .infinity, alignment: .bottom)
         .padding(.bottom, 100)
     }
 }
 
-
 #Preview {
     @State var show = true
-    return AddingView(show: $show)
+    @State var nav = false
+    @State var name = "타이레놀"
+    @State var cycle = 2
+    @State var time = Date()
+
+    return AddingView(show: $show, navigateToDetail: $nav, medName: $name, medCycle: $cycle, medTime: $time)
 }

@@ -47,6 +47,7 @@
 		525F2BD22DEDA66300F4D99E /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2BD12DEDA66300F4D99E /* FirebaseVertexAI-Preview */; };
 		52B76EEA2DE45BDF008B5F38 /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 52B76EE92DE45BDF008B5F38 /* SVProgressHUD */; };
 		52B76EED2DE4611B008B5F38 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 52B76EEC2DE4611B008B5F38 /* FSCalendar */; };
+		52D4F6302E03310C00A78853 /* ModifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D4F62F2E03310C00A78853 /* ModifyView.swift */; };
 		52E835A32DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E835A22DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift */; };
 		52E835A52DE44C6300089A0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E835A42DE44C6300089A0F /* ContentView.swift */; };
 		52E835A72DE44C6800089A0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E835A62DE44C6800089A0F /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		522DCAAA2DE479F200DB04E1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		522DCAAC2DE47BBD00DB04E1 /* AddingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingView.swift; sourceTree = "<group>"; };
 		5234B0012E030E3B00B41C0A /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		52D4F62F2E03310C00A78853 /* ModifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyView.swift; sourceTree = "<group>"; };
 		52E8359F2DE44C6300089A0F /* 1971366-yoonsung-termproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1971366-yoonsung-termproject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E835A22DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _971366_yoonsung_termprojectApp.swift; sourceTree = "<group>"; };
 		52E835A42DE44C6300089A0F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				522DCAAC2DE47BBD00DB04E1 /* AddingView.swift */,
 				520BE6AA2E01EB19001BCDE6 /* Dose.swift */,
 				5234B0012E030E3B00B41C0A /* UserProfileModel.swift */,
+				52D4F62F2E03310C00A78853 /* ModifyView.swift */,
 			);
 			path = "1971366-yoonsung-termproject";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				520BE6AD2E01EE74001BCDE6 /* ProfileView.swift in Sources */,
 				522DCAA52DE479A300DB04E1 /* LoginView.swift in Sources */,
 				522DCAAB2DE479F200DB04E1 /* MainView.swift in Sources */,
+				52D4F6302E03310C00A78853 /* ModifyView.swift in Sources */,
 				5234B0022E030E3B00B41C0A /* UserProfileModel.swift in Sources */,
 				522DCAA72DE479C200DB04E1 /* DetailView.swift in Sources */,
 				52E835A52DE44C6300089A0F /* ContentView.swift in Sources */,
