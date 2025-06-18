@@ -17,7 +17,7 @@ struct MasterView: View {
             // 메인 콘텐츠
             switch selectedTab {
             case 0:
-                MainView(selectedDate: $selectedDate)
+                MainViewWrapper(/*selectedDate: $selectedDate*/)
             case 1:
                 ProfileView()
             default:

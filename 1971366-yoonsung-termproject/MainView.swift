@@ -14,10 +14,13 @@ struct MainView: UIViewRepresentable {
         calendar.locale = Locale(identifier: "ko_KR")
         
         calendar.appearance.headerMinimumDissolvedAlpha = 0
-        calendar.appearance.weekdayTextColor = .lightGray
+        calendar.appearance.weekdayTextColor = .white
         calendar.appearance.selectionColor = .systemBlue
+        calendar.appearance.titleFont = UIFont.systemFont(ofSize: 20)
+        calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 20)
         calendar.appearance.todayColor = .systemRed
         calendar.appearance.titleTodayColor = .white
+        calendar.appearance.titleDefaultColor = .white
         
 
         return calendar
@@ -31,7 +34,8 @@ struct MainView: UIViewRepresentable {
         Coordinator(self)
     }
 
-    class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource {
+    class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance
+ {
         var parent: MainView
 
         init(_ parent: MainView) {
@@ -41,6 +45,37 @@ struct MainView: UIViewRepresentable {
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
             parent.selectedDate = date
         }
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+            let today = Calendar.current.startOfDay(for: Date())
+            let current = Calendar.current.startOfDay(for: date)
+
+            if current == today {
+                return .white
+            } else if current < today {
+                return UIColor.lightGray
+            } else {
+                return UIColor.white.withAlphaComponent(0.6)
+            }
+        }
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+            let today = Calendar.current.startOfDay(for: Date())
+            let current = Calendar.current.startOfDay(for: date)
+
+            if current == today {
+                return UIColor.systemBlue
+            } else if current < today {
+                return UIColor.white.withAlphaComponent(0.1)
+            } else {
+                return UIColor.white.withAlphaComponent(0.05)
+            }
+        }
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+            return UIColor.red
+        }
+
+
+
+
     }
 }
 
@@ -55,16 +90,16 @@ struct MainViewWrapper: View {
             VStack(spacing: 20) {
                 // 상단 날짜
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("오늘")
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(.white)
+                    Text(dateTitle(for: selectedDate))
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundColor(.white)
 
-                    Text(formattedDate(selectedDate))
-                        .font(.system(size: 16))
-                        .foregroundColor(.gray)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+                        Text(dateSubTitle(for: selectedDate))
+                            .font(.system(size: 16))
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
 
                 // 달력 (주간)
                 MainView(selectedDate: $selectedDate)
@@ -109,12 +144,45 @@ struct MainViewWrapper: View {
         }
     }
 
-    func formattedDate(_ date: Date) -> String {
+    // "오늘", "어제", "내일" 또는 요일
+    func dateTitle(for date: Date) -> String {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let selected = calendar.startOfDay(for: date)
+
+        if selected == today {
+            return "오늘"
+        } else if selected == calendar.date(byAdding: .day, value: -1, to: today) {
+            return "어제"
+        } else if selected == calendar.date(byAdding: .day, value: 1, to: today) {
+            return "내일"
+        } else {
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "ko_KR")
+            formatter.dateFormat = "EEEE" // 요일
+            return formatter.string(from: date)
+        }
+    }
+
+    // "수요일, 6월 18일" 또는 "6월 21일"
+    func dateSubTitle(for date: Date) -> String {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let selected = calendar.startOfDay(for: date)
+        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "EEEE, M월 d일"
+        
+        if selected == today || selected == calendar.date(byAdding: .day, value: -1, to: today) || selected == calendar.date(byAdding: .day, value: 1, to: today) {
+            formatter.dateFormat = "EEEE, M월 d일"
+        } else {
+            formatter.dateFormat = "M월 d일"
+        }
+
         return formatter.string(from: date)
     }
+
+
 }
 
 #Preview {

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        Text("profile")
+        VStack{
+            Color(red: 15/255, green: 22/255, blue: 34/255)
+        }
     }
 }
 
