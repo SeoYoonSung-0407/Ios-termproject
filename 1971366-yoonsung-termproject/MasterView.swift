@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MasterView: View {
+    @EnvironmentObject var userProfile: UserProfileModel
     @State private var selectedTab = 0
     @State private var showAddView = false
     @State private var selectedDate = Date() // ✅ 오늘 날짜 상태 추가
@@ -47,9 +48,16 @@ struct MasterView: View {
                             showAddView = true
                         }
                     } label: {
-                        Image(systemName: "bird.fill")
-                            .resizable()
-                            .frame(width: 60, height: 60)
+//                        Image(systemName: "bird.fill")
+//                            .resizable()
+//                            .frame(width: 60, height: 60)
+                        Image(uiImage: userProfile.profileImage ?? UIImage(systemName: "bird.fill")!)
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(Circle())
+                                    .padding(5)
+                                    .background(Color(red: 38/255, green: 46/255, blue: 66/255))
+                                    .clipShape(Circle())
                     }
 
                     Spacer()
@@ -68,5 +76,5 @@ struct MasterView: View {
 }
 
 #Preview {
-    MasterView()
+    MasterView().environmentObject(UserProfileModel())
 }

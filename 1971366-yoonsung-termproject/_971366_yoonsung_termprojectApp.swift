@@ -13,6 +13,7 @@ import FirebaseStorage
 
 @main
 struct _971366_yoonsung_termprojectApp: App {
+    @StateObject var userProfile = UserProfileModel()
     init(){
 // firebase 연결
             FirebaseApp.configure()
@@ -31,7 +32,7 @@ struct _971366_yoonsung_termprojectApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MasterView()
+            MasterView().environmentObject(userProfile)
         }
     }
 }

@@ -16,6 +16,7 @@
 		522DCAAB2DE479F200DB04E1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DCAAA2DE479F200DB04E1 /* MainView.swift */; };
 		522DCAAD2DE47BBD00DB04E1 /* AddingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DCAAC2DE47BBD00DB04E1 /* AddingView.swift */; };
 		5234B0002E02FBB600B41C0A /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 5234AFFF2E02FBB600B41C0A /* ImagePickerView */; };
+		5234B0022E030E3B00B41C0A /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234B0012E030E3B00B41C0A /* UserProfileModel.swift */; };
 		525F2B9C2DEDA66300F4D99E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2B9B2DEDA66300F4D99E /* FirebaseAnalytics */; };
 		525F2B9E2DEDA66300F4D99E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2B9D2DEDA66300F4D99E /* FirebaseAnalyticsOnDeviceConversion */; };
 		525F2BA02DEDA66300F4D99E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2B9F2DEDA66300F4D99E /* FirebaseAnalyticsSwift */; };
@@ -61,6 +62,7 @@
 		522DCAA82DE479D600DB04E1 /* MasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterView.swift; sourceTree = "<group>"; };
 		522DCAAA2DE479F200DB04E1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		522DCAAC2DE47BBD00DB04E1 /* AddingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingView.swift; sourceTree = "<group>"; };
+		5234B0012E030E3B00B41C0A /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		52E8359F2DE44C6300089A0F /* 1971366-yoonsung-termproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1971366-yoonsung-termproject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E835A22DE44C6300089A0F /* _971366_yoonsung_termprojectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _971366_yoonsung_termprojectApp.swift; sourceTree = "<group>"; };
 		52E835A42DE44C6300089A0F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				522DCAAA2DE479F200DB04E1 /* MainView.swift */,
 				522DCAAC2DE47BBD00DB04E1 /* AddingView.swift */,
 				520BE6AA2E01EB19001BCDE6 /* Dose.swift */,
+				5234B0012E030E3B00B41C0A /* UserProfileModel.swift */,
 			);
 			path = "1971366-yoonsung-termproject";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				520BE6AD2E01EE74001BCDE6 /* ProfileView.swift in Sources */,
 				522DCAA52DE479A300DB04E1 /* LoginView.swift in Sources */,
 				522DCAAB2DE479F200DB04E1 /* MainView.swift in Sources */,
+				5234B0022E030E3B00B41C0A /* UserProfileModel.swift in Sources */,
 				522DCAA72DE479C200DB04E1 /* DetailView.swift in Sources */,
 				52E835A52DE44C6300089A0F /* ContentView.swift in Sources */,
 				522DCAA92DE479D600DB04E1 /* MasterView.swift in Sources */,

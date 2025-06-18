@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-import ImagePickerView
+import PhotosUI
 
 struct ProfileView: View {
-    @State private var profileImage: UIImage? = nil
-    @State private var showImagePicker = false
+    @EnvironmentObject var userProfile: UserProfileModel
     @State private var medications = ["이나야", "아포톡신", "페니실린"]
+    @State private var selectedItem: PhotosPickerItem? = nil
 
     var body: some View {
         ZStack {
@@ -20,10 +20,8 @@ struct ProfileView: View {
 
             VStack(spacing: 20) {
                 // 프로필 이미지
-                Button(action: {
-                    showImagePicker = true
-                }) {
-                    if let image = profileImage {
+                PhotosPicker(selection: $selectedItem, matching: .images) {
+                    if let image = userProfile.profileImage {
                         Image(uiImage: image)
                             .resizable()
                             .frame(width: 100, height: 100)
@@ -32,46 +30,45 @@ struct ProfileView: View {
                         Circle()
                             .fill(Color.gray)
                             .frame(width: 100, height: 100)
-                            .overlay(Text("이미지"))
+                            .overlay(Text("이미지").foregroundColor(.white))
+                    }
+                }
+                .onChange(of: selectedItem) { newItem in
+                    Task {
+                        if let data = try? await newItem?.loadTransferable(type: Data.self),
+                           let uiImage = UIImage(data: data) {
+                            userProfile.profileImage = uiImage
+                        }
                     }
                 }
 
-                // 이름 or 이동 버튼
+                // 이름
                 Text("사용자 이름")
                     .font(.title3)
                     .foregroundColor(.white)
 
-                // 약 리스트
+                // 복용 약 리스트
                 List {
                     ForEach(medications, id: \.self) { med in
                         HStack {
                             Text(med)
                             Spacer()
-                            Button("수정") {
-                                // 수정 기능
-                            }
-                            Button("삭제") {
-                                medications.removeAll { $0 == med }
+                            Button("설정") {
+                                // 나중에 ModifyView 호출
                             }
                         }
                     }
                 }
-                .frame(height: 200) // 높이 제한 (선택)
+                .frame(height: 200)
+                .scrollContentBackground(.hidden)
+                .background(Color.clear)
             }
             .padding()
         }
-        .sheet(isPresented: $showImagePicker) {
-            ImagePickerView(sourceType: .photoLibrary) { image in
-                self.profileImage = image
-            }
-        }
-
-        
     }
 }
 
-
-
 #Preview {
     ProfileView()
+        .environmentObject(UserProfileModel())
 }
