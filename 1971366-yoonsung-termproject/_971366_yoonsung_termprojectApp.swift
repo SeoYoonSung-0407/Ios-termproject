@@ -31,7 +31,7 @@ struct _971366_yoonsung_termprojectApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MasterView()
         }
     }
 }

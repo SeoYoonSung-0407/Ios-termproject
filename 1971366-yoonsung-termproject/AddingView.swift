@@ -12,7 +12,7 @@ struct AddingView: View {
     @State private var offsetY: CGFloat = 0
 
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             Capsule()
                 .fill(Color.gray)
                 .frame(width: 40, height: 6)
@@ -20,26 +20,27 @@ struct AddingView: View {
 
             Text("무엇을 도와드릴까요?")
                 .font(.headline)
-                .padding()
+                .foregroundColor(.white)
 
             Button("💊 약 추가할게요") { /* 액션 */ }
+                .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.blue)
                 .cornerRadius(10)
                 .foregroundColor(.white)
 
             Button("💊 필요할 때 투여") { /* 액션 */ }
+                .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
                 .foregroundColor(.white)
-
-            Spacer()
         }
         .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background(Color(red: 28/255, green: 36/255, blue: 50/255))
-        .cornerRadius(30)
+        .background(Color(red: 28/255, green: 70/255, blue: 50/255))
+        .cornerRadius(20)
+        .padding(.horizontal, 16)
+        .padding(.bottom, 20)
         .offset(y: offsetY)
         .gesture(
             DragGesture()
@@ -59,8 +60,12 @@ struct AddingView: View {
         )
         .transition(.move(edge: .bottom))
         .animation(.easeInOut, value: offsetY)
+        // ⬇️ 이게 핵심
+        .frame(maxHeight: .infinity, alignment: .bottom)
+        .padding(.bottom, 100)
     }
 }
+
 
 #Preview {
     @State var show = true

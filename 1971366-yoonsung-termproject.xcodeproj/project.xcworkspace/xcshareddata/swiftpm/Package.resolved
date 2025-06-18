@@ -1,5 +1,5 @@
 {
-  "originHash" : "660f055fbe99a14e4f4140f5b9db6df6b4d9f9fae98e088362535dcf7747cdb6",
+  "originHash" : "72e5ea69e0b1eb2c7fa96cb944d4fc12977b94e16255de2baf42eb5ec430cd31",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -80,6 +80,15 @@
       "state" : {
         "revision" : "a2ab612cb980066ee56d90d60d8462992c07f24b",
         "version" : "3.5.0"
+      }
+    },
+    {
+      "identity" : "imagepickerview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ralfebert/ImagePickerView",
+      "state" : {
+        "revision" : "b84dd1c85a65cddba40c89699cd63ba0cb248dbd",
+        "version" : "0.5.0"
       }
     },
     {

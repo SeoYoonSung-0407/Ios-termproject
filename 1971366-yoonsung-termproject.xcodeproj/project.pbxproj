@@ -15,6 +15,7 @@
 		522DCAA92DE479D600DB04E1 /* MasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DCAA82DE479D600DB04E1 /* MasterView.swift */; };
 		522DCAAB2DE479F200DB04E1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DCAAA2DE479F200DB04E1 /* MainView.swift */; };
 		522DCAAD2DE47BBD00DB04E1 /* AddingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DCAAC2DE47BBD00DB04E1 /* AddingView.swift */; };
+		5234B0002E02FBB600B41C0A /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 5234AFFF2E02FBB600B41C0A /* ImagePickerView */; };
 		525F2B9C2DEDA66300F4D99E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2B9B2DEDA66300F4D99E /* FirebaseAnalytics */; };
 		525F2B9E2DEDA66300F4D99E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2B9D2DEDA66300F4D99E /* FirebaseAnalyticsOnDeviceConversion */; };
 		525F2BA02DEDA66300F4D99E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 525F2B9F2DEDA66300F4D99E /* FirebaseAnalyticsSwift */; };
@@ -90,6 +91,7 @@
 				525F2BBC2DEDA66300F4D99E /* FirebaseFunctionsCombine-Community in Frameworks */,
 				525F2BB62DEDA66300F4D99E /* FirebaseFirestoreCombine-Community in Frameworks */,
 				525F2BAE2DEDA66300F4D99E /* FirebaseDatabase in Frameworks */,
+				5234B0002E02FBB600B41C0A /* ImagePickerView in Frameworks */,
 				525F2BC82DEDA66300F4D99E /* FirebasePerformance in Frameworks */,
 				525F2BA42DEDA66300F4D99E /* FirebaseAppCheck in Frameworks */,
 				525F2B9E2DEDA66300F4D99E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -206,6 +208,7 @@
 				525F2BCD2DEDA66300F4D99E /* FirebaseStorage */,
 				525F2BCF2DEDA66300F4D99E /* FirebaseStorageCombine-Community */,
 				525F2BD12DEDA66300F4D99E /* FirebaseVertexAI-Preview */,
+				5234AFFF2E02FBB600B41C0A /* ImagePickerView */,
 			);
 			productName = "1971366-yoonsung-termproject";
 			productReference = 52E8359F2DE44C6300089A0F /* 1971366-yoonsung-termproject.app */;
@@ -239,6 +242,7 @@
 				52B76EE82DE45BDF008B5F38 /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
 				52B76EEB2DE4611B008B5F38 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				525F2B9A2DEDA63300F4D99E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5234AFFE2E02FBB600B41C0A /* XCRemoteSwiftPackageReference "ImagePickerView" */,
 			);
 			productRefGroup = 52E835A02DE44C6300089A0F /* Products */;
 			projectDirPath = "";
@@ -483,6 +487,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5234AFFE2E02FBB600B41C0A /* XCRemoteSwiftPackageReference "ImagePickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ralfebert/ImagePickerView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		525F2B9A2DEDA63300F4D99E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -510,6 +522,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5234AFFF2E02FBB600B41C0A /* ImagePickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5234AFFE2E02FBB600B41C0A /* XCRemoteSwiftPackageReference "ImagePickerView" */;
+			productName = ImagePickerView;
+		};
 		525F2B9B2DEDA66300F4D99E /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 525F2B9A2DEDA63300F4D99E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
