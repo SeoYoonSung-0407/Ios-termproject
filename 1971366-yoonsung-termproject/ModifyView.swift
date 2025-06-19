@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ModifyView: View {
-    @State private var showDetailView = false
     var medicationName: String
     var onEdit: () -> Void
     var onDelete: () -> Void
     @Binding var isPresented: Bool
+
     @State private var offsetY: CGFloat = 0
 
     var body: some View {
@@ -34,9 +34,12 @@ struct ModifyView: View {
                 .foregroundColor(.gray)
 
             Button(action: {
-                isPresented = false
-                showDetailView = true
-                onEdit()
+                withAnimation {
+                    isPresented = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    onEdit()
+                }
             }) {
                 Label("수정할게요", systemImage: "pencil")
                     .frame(maxWidth: .infinity)
@@ -45,15 +48,14 @@ struct ModifyView: View {
                     .cornerRadius(12)
                     .foregroundColor(.white)
             }
-            .sheet(isPresented: $showDetailView) {
-                DetailView(name: medicationName, cycle: 1, time: Date()) { name, cycle, time in
-                    print("수정된 값:", name, cycle, time)
-                    // 여기에서 수정된 약 정보를 저장하는 코드 작성
-                }
-            }
+
             Button(action: {
-                isPresented = false
-                onDelete()
+                withAnimation {
+                    isPresented = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    onDelete()
+                }
             }) {
                 Label("삭제할게요", systemImage: "trash")
                     .frame(maxWidth: .infinity)

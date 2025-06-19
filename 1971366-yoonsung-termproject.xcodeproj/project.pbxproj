@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5200C24C2E04497500DF85DB /* DoseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200C24B2E04497500DF85DB /* DoseStore.swift */; };
 		520BE6A72E019CD5001BCDE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 520BE6A62E019CD5001BCDE6 /* GoogleService-Info.plist */; };
 		520BE6AB2E01EB19001BCDE6 /* Dose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520BE6AA2E01EB19001BCDE6 /* Dose.swift */; };
 		520BE6AD2E01EE74001BCDE6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520BE6AC2E01EE74001BCDE6 /* ProfileView.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5200C24B2E04497500DF85DB /* DoseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseStore.swift; sourceTree = "<group>"; };
 		520BE6A62E019CD5001BCDE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		520BE6AA2E01EB19001BCDE6 /* Dose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dose.swift; sourceTree = "<group>"; };
 		520BE6AC2E01EE74001BCDE6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				520BE6AA2E01EB19001BCDE6 /* Dose.swift */,
 				5234B0012E030E3B00B41C0A /* UserProfileModel.swift */,
 				52D4F62F2E03310C00A78853 /* ModifyView.swift */,
+				5200C24B2E04497500DF85DB /* DoseStore.swift */,
 			);
 			path = "1971366-yoonsung-termproject";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				522DCAAB2DE479F200DB04E1 /* MainView.swift in Sources */,
 				52D4F6302E03310C00A78853 /* ModifyView.swift in Sources */,
 				5234B0022E030E3B00B41C0A /* UserProfileModel.swift in Sources */,
+				5200C24C2E04497500DF85DB /* DoseStore.swift in Sources */,
 				522DCAA72DE479C200DB04E1 /* DetailView.swift in Sources */,
 				52E835A52DE44C6300089A0F /* ContentView.swift in Sources */,
 				522DCAA92DE479D600DB04E1 /* MasterView.swift in Sources */,

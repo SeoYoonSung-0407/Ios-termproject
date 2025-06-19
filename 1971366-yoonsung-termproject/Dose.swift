@@ -7,9 +7,18 @@
 
 import Foundation
 
-struct Dose: Identifiable {
-    let id = UUID()
-    let time: String
-    let name: String
-    var taken: Bool
+struct Dose: Identifiable, Hashable {
+    let id: UUID
+    var time: Date
+    var name: String
+    var cycle: Int
+    var startDate: Date
+
+    init(id: UUID = UUID(), time: Date, name: String, cycle: Int, startDate: Date) {
+        self.id = id
+        self.time = time
+        self.name = name
+        self.cycle = cycle
+        self.startDate = startDate
+    }
 }

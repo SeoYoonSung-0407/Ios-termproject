@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MasterView: View {
     @EnvironmentObject var userProfile: UserProfileModel
+    @StateObject var doseStore = DoseStore()
+
     @State private var selectedTab = 0
     @State private var showAddView = false
     @State private var navigateToDetail = false
@@ -31,7 +33,7 @@ struct MasterView: View {
                     MainViewWrapper()
                 }
 
-                // ✅ AddingView가 띄워졌을 때 바깥 터치 감지
+                // AddingView가 띄워졌을 때 바깥 터치 감지
                 if showAddView {
                     Color.black.opacity(0.001)
                         .ignoresSafeArea()
@@ -93,15 +95,15 @@ struct MasterView: View {
                     .background(Color.black)
                 }
 
-                // ✅ NavigationLink (빈 뷰로 동작 제어)
+                // NavigationLink: DetailView로 이동
                 NavigationLink(
                     destination: DetailView(
                         name: newMedName,
                         cycle: newMedCycle,
                         time: newMedTime
                     ) { name, cycle, time in
-                        print("저장됨: \(name), \(cycle), \(time)")
-                        // 저장 처리 추가 가능
+                        let today = Date()
+                        doseStore.addDose(name: name, cycle: cycle, time: time, startDate: today)
                     },
                     isActive: $navigateToDetail
                 ) {
@@ -109,6 +111,7 @@ struct MasterView: View {
                 }
             }
         }
+        .environmentObject(doseStore)
     }
 }
 
