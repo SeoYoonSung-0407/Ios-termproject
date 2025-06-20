@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct MasterView: View {
     @EnvironmentObject var userProfile: UserProfileModel
@@ -68,6 +69,7 @@ struct MasterView: View {
                         Spacer()
 
                         Button {
+                            newMedTime = Date() // ✅ 약 추가 버튼 누를 때마다 시간 갱신
                             withAnimation {
                                 showAddView = true
                             }

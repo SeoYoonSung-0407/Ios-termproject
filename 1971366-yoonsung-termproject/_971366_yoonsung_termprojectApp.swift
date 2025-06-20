@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
+import UserNotifications
 
 @main
 struct _971366_yoonsung_termprojectApp: App {
@@ -33,6 +34,16 @@ struct _971366_yoonsung_termprojectApp: App {
     var body: some Scene {
         WindowGroup {
             MasterView().environmentObject(userProfile)
+        }
+    }
+
+    func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if granted {
+                print("🔔 알림 권한 허용됨")
+            } else {
+                print("🚫 알림 권한 거부됨")
+            }
         }
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddingView: View {
+    @EnvironmentObject var doseStore: DoseStore
+    
     @Binding var show: Bool
     @Binding var navigateToDetail: Bool
     @Binding var medName: String
@@ -26,25 +28,22 @@ struct AddingView: View {
                 .font(.headline)
                 .foregroundColor(.white)
 
-            Button("💊 약 추가할게요") {
+            Button(action: {
                 show = false
                 navigateToDetail = true
+            }) {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                    Text("약 추가할게요")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(16)
+                .foregroundColor(.white)
             }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(10)
-            .foregroundColor(.white)
-
-            Button("💊 필요할 때 투여") {
-                show = false
-                // 나중에 다른 로직 추가 가능
-            }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(10)
-            .foregroundColor(.white)
         }
         .padding()
         .background(Color(red: 28/255, green: 70/255, blue: 50/255))
@@ -83,4 +82,5 @@ struct AddingView: View {
     @State var time = Date()
 
     return AddingView(show: $show, navigateToDetail: $nav, medName: $name, medCycle: $cycle, medTime: $time)
+        .environmentObject(DoseStore())
 }

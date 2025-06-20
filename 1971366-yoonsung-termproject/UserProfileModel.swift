@@ -9,5 +9,6 @@ import SwiftUI
 
 class UserProfileModel: ObservableObject {
     @Published var profileImage: UIImage? = nil
+    @Published var name: String = "사용자 이름"
 }
 

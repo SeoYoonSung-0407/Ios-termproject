@@ -9,10 +9,12 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.dismiss) var dismiss
-    
+
     @State private var name: String
     @State private var cycle: Int
     @State private var time: Date
+
+    @FocusState private var isNameFocused: Bool
 
     var onSave: (String, Int, Date) -> Void
 
@@ -24,23 +26,34 @@ struct DetailView: View {
     }
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("약 이름")) {
-                    TextField("예: 타이레놀", text: $name)
-                }
+        NavigationStack {
+            ZStack {
+                Color(.systemBackground)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
 
-                Section(header: Text("복용 주기 (일 단위)")) {
-                    Stepper(value: $cycle, in: 1...30) {
-                        Text("\(cycle)일마다")
+                Form {
+                    Section(header: Text("약 이름")) {
+                        TextField("예: 타이레놀", text: $name)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                            .focused($isNameFocused)
+                    }
+
+                    Section(header: Text("복용 주기 (일 단위)")) {
+                        Stepper(value: $cycle, in: 1...30) {
+                            Text("\(cycle)일마다 복용")
+                        }
+                    }
+
+                    Section(header: Text("알림 시간")) {
+                        DatePicker("시간 선택", selection: $time, displayedComponents: .hourAndMinute)
                     }
                 }
-
-                Section(header: Text("알림 시간")) {
-                    DatePicker("시간 선택", selection: $time, displayedComponents: .hourAndMinute)
-                }
             }
-            .navigationTitle("약 정보 수정")
+            .navigationTitle("약 정보 입력")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("저장") {
@@ -50,12 +63,23 @@ struct DetailView: View {
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("취소") {
+                    Button("취소", role: .cancel) {
                         dismiss()
                     }
                 }
             }
+            .onAppear {
+                // 약 이름 입력 필드 자동 포커싱
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    isNameFocused = true
+                }
+            }
         }
+    }
+
+    // 키보드 숨김 함수
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 

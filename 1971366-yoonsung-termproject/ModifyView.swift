@@ -12,7 +12,6 @@ struct ModifyView: View {
     var onEdit: () -> Void
     var onDelete: () -> Void
     @Binding var isPresented: Bool
-
     @State private var offsetY: CGFloat = 0
 
     var body: some View {
@@ -34,9 +33,7 @@ struct ModifyView: View {
                 .foregroundColor(.gray)
 
             Button(action: {
-                withAnimation {
-                    isPresented = false
-                }
+                isPresented = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     onEdit()
                 }
@@ -50,12 +47,8 @@ struct ModifyView: View {
             }
 
             Button(action: {
-                withAnimation {
-                    isPresented = false
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    onDelete()
-                }
+                isPresented = false
+                onDelete()
             }) {
                 Label("삭제할게요", systemImage: "trash")
                     .frame(maxWidth: .infinity)

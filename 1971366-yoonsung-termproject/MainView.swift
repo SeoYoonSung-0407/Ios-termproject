@@ -1,7 +1,6 @@
 import SwiftUI
 import FSCalendar
 
-// FSCalendar 기반 주간 달력 뷰
 struct MainView: UIViewRepresentable {
     @Binding var selectedDate: Date
     @EnvironmentObject var doseStore: DoseStore
@@ -13,7 +12,7 @@ struct MainView: UIViewRepresentable {
         calendar.scope = .week
         calendar.scrollDirection = .horizontal
         calendar.locale = Locale(identifier: "ko_KR")
-        
+
         calendar.appearance.headerMinimumDissolvedAlpha = 0
         calendar.appearance.weekdayTextColor = .white
         calendar.appearance.selectionColor = .systemBlue
@@ -22,7 +21,7 @@ struct MainView: UIViewRepresentable {
         calendar.appearance.todayColor = .systemRed
         calendar.appearance.titleTodayColor = .white
         calendar.appearance.titleDefaultColor = .white
-        
+
         return calendar
     }
 
@@ -55,19 +54,17 @@ struct MainView: UIViewRepresentable {
 struct MainViewWrapper: View {
     @EnvironmentObject var doseStore: DoseStore
     @State private var selectedDate = Date()
-    @State private var taken: Set<UUID> = []
+    @State private var takenStatus: [String: Set<UUID>] = [:] // 날짜별 체크 상태
 
     var body: some View {
         ZStack {
             Color(red: 15/255, green: 22/255, blue: 34/255).ignoresSafeArea()
 
             VStack(spacing: 20) {
-                // 상단 날짜
                 VStack(alignment: .leading, spacing: 4) {
                     Text(dateTitle(for: selectedDate))
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.white)
-
                     Text(dateSubTitle(for: selectedDate))
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
@@ -75,44 +72,55 @@ struct MainViewWrapper: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
 
-                // 달력
                 MainView(selectedDate: $selectedDate)
                     .frame(height: 200)
                     .padding(.horizontal)
 
-                // 약 복용 리스트
-                if doseStore.doses(for: selectedDate).isEmpty {
+                let dosesToday = doseStore.doses(for: selectedDate)
+                if dosesToday.isEmpty {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color(red: 28/255, green: 36/255, blue: 50/255))
                         .frame(height: 150)
-                        .overlay(
-                            Text("등록된 약이 없습니다")
-                                .foregroundColor(.white)
-                        )
+                        .overlay(Text("등록된 약이 없습니다").foregroundColor(.white))
                         .padding(.horizontal)
                 } else {
                     ScrollView {
                         VStack(spacing: 12) {
-                            ForEach(doseStore.doses(for: selectedDate)) { dose in
+                            ForEach(dosesToday) { dose in
+                                let dateKey = dateToKey(selectedDate)
+                                let takenSet = takenStatus[dateKey] ?? []
+                                let isTaken = takenSet.contains(dose.id)
+
                                 HStack {
                                     VStack(alignment: .leading) {
-                                        Text(timeString(from: dose.time))
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
+                                        if let time = dose.time {
+                                            Text(timeString(from: time))
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                        } else {
+                                            Text("시간 없음")
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                        }
+
                                         Text(dose.name)
                                             .font(.headline)
                                             .foregroundColor(.white)
                                     }
+
                                     Spacer()
+
                                     Button(action: {
-                                        if taken.contains(dose.id) {
-                                            taken.remove(dose.id)
+                                        var updatedSet = takenSet
+                                        if isTaken {
+                                            updatedSet.remove(dose.id)
                                         } else {
-                                            taken.insert(dose.id)
+                                            updatedSet.insert(dose.id)
                                         }
+                                        takenStatus[dateKey] = updatedSet
                                     }) {
-                                        Image(systemName: taken.contains(dose.id) ? "checkmark.circle.fill" : "circle")
-                                            .foregroundColor(taken.contains(dose.id) ? .green : .gray)
+                                        Image(systemName: isTaken ? "checkmark.circle.fill" : "circle")
+                                            .foregroundColor(isTaken ? .green : .gray)
                                             .font(.title2)
                                     }
                                 }
@@ -128,6 +136,14 @@ struct MainViewWrapper: View {
                 Spacer()
             }
         }
+    }
+
+    // MARK: - Helper
+
+    func dateToKey(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 
     func dateTitle(for date: Date) -> String {
@@ -152,15 +168,7 @@ struct MainViewWrapper: View {
     func dateSubTitle(for date: Date) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        let today = Calendar.current.startOfDay(for: Date())
-
-        if Calendar.current.isDate(date, inSameDayAs: today) ||
-            Calendar.current.isDate(date, inSameDayAs: Calendar.current.date(byAdding: .day, value: -1, to: today)!) ||
-            Calendar.current.isDate(date, inSameDayAs: Calendar.current.date(byAdding: .day, value: 1, to: today)!) {
-            formatter.dateFormat = "EEEE, M월 d일"
-        } else {
-            formatter.dateFormat = "M월 d일"
-        }
+        formatter.dateFormat = "M월 d일, EEEE"
         return formatter.string(from: date)
     }
 
@@ -171,8 +179,6 @@ struct MainViewWrapper: View {
         return formatter.string(from: date)
     }
 }
-
 #Preview {
-    MainViewWrapper()
-        .environmentObject(DoseStore())
+    MainViewWrapper().environmentObject(DoseStore())
 }

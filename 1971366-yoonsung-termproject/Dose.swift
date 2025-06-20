@@ -9,15 +9,15 @@ import Foundation
 
 struct Dose: Identifiable, Hashable {
     let id: UUID
-    var time: Date
     var name: String
-    var cycle: Int
-    var startDate: Date
+    var time: Date?
+    var cycle: Int?
+    var startDate: Date?
 
-    init(id: UUID = UUID(), time: Date, name: String, cycle: Int, startDate: Date) {
+    init(id: UUID = UUID(), name: String, time: Date?, cycle: Int?, startDate: Date?) {
         self.id = id
-        self.time = time
         self.name = name
+        self.time = time
         self.cycle = cycle
         self.startDate = startDate
     }
